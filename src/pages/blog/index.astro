@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="Blog" description="Articoli di fisica, programmazione e sport.">
+  <section class="stack" style="margin-bottom: 2.5rem;">
+    <h1>Blog</h1>
+    <p class="muted">
+      Appunti e articoli su fisica, programmazione e allenamento. In ordine cronologico inverso.
+    </p>
+  </section>
+
+  {
+    posts.length > 0 ? (
+      <PostList posts={posts} />
+    ) : (
+      <p class="muted">Ancora nessun articolo pubblicato.</p>
+    )
+  }
+</BaseLayout>

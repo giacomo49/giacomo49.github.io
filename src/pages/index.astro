@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { SOCIALS } from '../consts';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="stack">
+    <h1>Ciao, sono Giacomo Mancuso.</h1>
+    <p class="muted">
+      Ho 21 anni, studio Fisica e corro. Nel mezzo scrivo codice, e qui tengo insieme
+      le tre cose: appunti di fisica, allenamenti e piccoli esperimenti con il computer.
+    </p>
+  </section>
+
+  <section class="stack" style="margin-top: 3.5rem;">
+    <h2>Fisica</h2>
+    <p class="muted">
+      Sono al corso di laurea triennale in Fisica. Mi interessa soprattutto il punto in cui
+      la teoria diventa un conto che si può fare davvero: meccanica analitica, elettromagnetismo,
+      i primi passi nella quantistica. Scrivo articoli quando capisco qualcosa abbastanza bene
+      da poterlo spiegare — di solito è anche il momento in cui scopro che non l'avevo capito.
+    </p>
+  </section>
+
+  <section class="stack" style="margin-top: 2.5rem;">
+    <h2>Atletica leggera</h2>
+    <p class="muted">
+      Pratico atletica leggera a livello agonistico. È la parte della mia giornata che non
+      si può ottimizzare a tavolino: bisogna presentarsi, ripetere, misurare, aspettare.
+      Mi ha insegnato più sulla costanza di qualsiasi manuale di produttività.
+    </p>
+  </section>
+
+  <section class="stack" style="margin-top: 2.5rem;">
+    <h2>Informatica &amp; AI</h2>
+    <p class="muted">
+      Programmo per curiosità: simulazioni numeriche, analisi dei dati degli allenamenti,
+      strumenti che mi semplificano lo studio. Seguo da vicino il machine learning e i modelli
+      linguistici, con l'idea che siano soprattutto un ottimo strumento per imparare più in fretta.
+      I progetti stanno in <a class="link-underline" href="/progetti">/progetti</a>.
+    </p>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section style="margin-top: 3.5rem;">
+        <h2 class="section-title">Ultimi articoli</h2>
+        <div style="margin-top: 0.75rem;">
+          <PostList posts={posts} />
+        </div>
+        <p class="small" style="margin-top: 1.25rem;">
+          <a class="link-underline muted" href="/blog">Tutti gli articoli &rarr;</a>
+        </p>
+      </section>
+    )
+  }
+
+  <section style="margin-top: 3.5rem;">
+    <h2 class="section-title">Dove trovarmi</h2>
+    <p class="stack" style="margin-top: 0.75rem;">
+      {
+        SOCIALS.map((social) => (
+          <a class="link-underline" href={social.href} rel="me noopener" target="_blank" style="margin-right: 1.25rem;">
+            {social.label} <span class="muted small">{social.handle}</span>
+          </a>
+        ))
+      }
+    </p>
+  </section>
+</BaseLayout>

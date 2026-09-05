@@ -1,0 +1,35 @@
+---
+import 'katex/dist/katex.min.css';
+
+import BaseLayout from './BaseLayout.astro';
+import { formatDate, isoDate } from '../utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: Date;
+  tags: string[];
+}
+
+const { title, description, date, tags } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <header class="stack" style="margin-bottom: 2.5rem;">
+      <h1>{title}</h1>
+      <p class="small muted" style="display: flex; flex-wrap: wrap; gap: 0.5rem 0.75rem; align-items: center;">
+        <time datetime={isoDate(date)}>{formatDate(date)}</time>
+        {tags.map((tag) => <span class="tag">{tag}</span>)}
+      </p>
+    </header>
+
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+
+  <p class="small" style="margin-top: 3.5rem;">
+    <a class="link-underline muted" href="/blog">&larr; Tutti gli articoli</a>
+  </p>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import { formatDate, isoDate } from '../utils';
+
+interface Item {
+  id: string;
+  data: { title: string; date: Date; tags: string[] };
+}
+
+interface Props {
+  posts: Item[];
+  base?: string;
+}
+
+const { posts, base = '/blog' } = Astro.props;
+---
+
+<ul class="post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <a class="post-item" href={`${base}/${post.id}/`}>
+          <span class="title">{post.data.title}</span>
+          {post.data.tags[0] && <span class="tag">{post.data.tags[0]}</span>}
+          <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date)}</time>
+        </a>
+      </li>
+    ))
+  }
+</ul>

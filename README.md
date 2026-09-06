@@ -1,50 +1,50 @@
 # giacomo49.github.io
 
-Sito personale e blog di Giacomo Mancuso. Astro + CSS scritto a mano, contenuti in Markdown,
-supporto LaTeX (KaTeX) per gli articoli di fisica.
+Personal site and blog of Giacomo Mancuso. Astro + hand-written CSS, content in Markdown,
+LaTeX support (KaTeX) for the physics articles.
 
-## Comandi
+## Commands
 
-| Comando           | Cosa fa                                      |
+| Command           | What it does                                 |
 | ----------------- | -------------------------------------------- |
-| `npm install`     | Installa le dipendenze                       |
-| `npm run dev`     | Server di sviluppo su http://localhost:4321  |
-| `npm run build`   | Genera il sito statico in `dist/`            |
-| `npm run preview` | Anteprima locale del sito già buildato       |
+| `npm install`     | Install dependencies                         |
+| `npm run dev`     | Dev server at http://localhost:4321          |
+| `npm run build`   | Build the static site into `dist/`           |
+| `npm run preview` | Preview the built site locally               |
 
-## Scrivere un nuovo articolo
+## Writing a new article
 
-Crea un file `.md` in `src/content/blog/`. Il nome del file diventa l'URL:
-`src/content/blog/entropia.md` &rarr; `/blog/entropia`. Non c'è altro da toccare: l'articolo
-compare da solo nella lista del blog, nel feed RSS e (se è tra i più recenti) in home.
+Create a `.md` file in `src/content/blog/`. The filename becomes the URL:
+`src/content/blog/entropy.md` &rarr; `/blog/entropy`. Nothing else to touch: the article shows up
+by itself in the blog list, in the RSS feed and (if recent enough) on the homepage.
 
 ```markdown
 ---
-title: "Titolo dell'articolo"
+title: "Article title"
 date: 2026-09-05
-description: "Una riga di sommario, usata per SEO e feed RSS."
-tags: ["Fisica"]
+description: "One line of summary, used for SEO and the RSS feed."
+tags: ["Physics"]
 draft: false
 ---
 
-Il testo dell'articolo.
+The body of the article.
 ```
 
-Campi del frontmatter:
+Frontmatter fields:
 
-- `title` (obbligatorio) — titolo dell'articolo.
-- `date` (obbligatorio) — `AAAA-MM-GG`. Determina l'ordinamento.
-- `description` (facoltativo) — sommario per meta tag e RSS.
-- `tags` (facoltativo) — lista; **il primo tag** è quello mostrato nella lista del blog.
-  Convenzione attuale: `Fisica`, `Programmazione`, `Sport`, `Personale`.
-- `draft` (facoltativo, default `false`) — se `true` l'articolo non viene pubblicato.
+- `title` (required) — the article title.
+- `date` (required) — `YYYY-MM-DD`. Determines the ordering.
+- `description` (optional) — summary for meta tags and RSS.
+- `tags` (optional) — a list; **the first tag** is the one shown in the blog list.
+  Current convention: `Physics`, `Programming`, `Sport`, `Personal`.
+- `draft` (optional, defaults to `false`) — if `true` the article is not published.
 
-Se un campo obbligatorio manca o ha il formato sbagliato, la build si ferma con un errore
-chiaro invece di pubblicare una pagina rotta.
+If a required field is missing or has the wrong shape, the build stops with a clear error
+instead of publishing a broken page.
 
-### Formule LaTeX
+### LaTeX formulas
 
-Inline con un dollaro, `$E = mc^2$`; a blocco con due dollari:
+Inline with single dollars, `$E = mc^2$`; block with double dollars:
 
 ```markdown
 $$
@@ -52,88 +52,83 @@ $$
 $$
 ```
 
-Le formule vengono renderizzate a build time da KaTeX: nessun JavaScript viene caricato dal
-browser per la matematica. Il CSS di KaTeX (e i suoi font) viene incluso solo nelle pagine
-degli articoli, non in tutto il sito.
+Formulas are rendered by KaTeX at build time: the browser loads no JavaScript for the maths.
+The KaTeX CSS (and its fonts) is included only on article pages, not across the whole site.
 
-Attenzione a un solo dettaglio: se in un testo servono dei dollari letterali (prezzi),
-vanno scritti come `\$`, altrimenti il parser li interpreta come inizio di formula.
+One detail to watch: if a text needs literal dollar signs (prices), write them as `\$`,
+otherwise the parser reads them as the start of a formula.
 
-### Blocchi di codice
+### Code blocks
 
-I blocchi con tre backtick e il nome del linguaggio hanno syntax highlighting a build time
-(Shiki, tema `github-light` / `github-dark` che segue il tema del sito).
+Triple-backtick blocks with a language name get syntax highlighting at build time
+(Shiki, `github-light` / `github-dark`, following the site theme).
 
-## Aggiungere un progetto
+## Adding a project
 
-Stessa logica, in `src/content/progetti/`:
+Same idea, in `src/content/projects/`:
 
 ```markdown
 ---
-title: "Nome del progetto"
+title: "Project name"
 date: 2026-05-10
-description: "Una o due righe su cosa fa e perché esiste."
+description: "A line or two on what it does and why it exists."
 tags: ["Python", "AI"]
-url: "https://github.com/giacomo49/progetto"
+url: "https://github.com/giacomo49/project"
 draft: false
 ---
 ```
 
-## Struttura
+## Structure
 
 ```
 src/
 ├── components/     Header, Footer, ThemeToggle, PostList
 ├── content/
-│   ├── blog/       ← gli articoli (.md)
-│   └── progetti/   ← i progetti (.md)
-├── layouts/        BaseLayout (pagine) e BlogPost (articoli)
-├── pages/          Rotte: /, /blog, /blog/[slug], /progetti, /rss.xml, /404
-├── styles/         global.css: qui stanno tutti i colori e la tipografia
-├── consts.ts       Titolo del sito, voci di menu, link social
-└── content.config.ts  Schema del frontmatter
+│   ├── blog/       ← the articles (.md)
+│   └── projects/   ← the projects (.md)
+├── layouts/        BaseLayout (pages) and BlogPost (articles)
+├── pages/          Routes: /, /blog, /blog/[slug], /projects, /rss.xml, /404
+├── styles/         global.css: every color and type decision lives here
+├── consts.ts       Site title, nav items, social links
+└── content.config.ts  Frontmatter schema
 ```
 
-Per cambiare i colori basta modificare le variabili in cima a `src/styles/global.css`:
-il blocco `:root` è il tema chiaro, `html.dark` quello scuro.
+To change the colors, edit the variables at the top of `src/styles/global.css`:
+the `:root` block is the light theme, `html.dark` the dark one.
 
-## Tema chiaro/scuro
+## Light/dark theme
 
-Il pulsante nell'header salva la scelta in `localStorage`. Al primo caricamento, se non c'è
-una scelta salvata, il sito segue il tema di sistema. Uno script inline nel `<head>` applica
-il tema prima del primo paint, quindi non c'è il flash bianco al caricamento.
+The header button stores the choice in `localStorage`. On a first visit, with nothing stored,
+the site follows the system theme. An inline script in the `<head>` applies the theme before
+first paint, so there is no white flash on load.
 
-## Deploy
+## Deployment
 
-### GitHub Pages (gratis, dominio `giacomo49.github.io`)
+### GitHub Pages (free, at `giacomo49.github.io`)
 
-1. Crea su GitHub un repository chiamato **`giacomo49.github.io`** (il nome è importante:
-   è quello che dà l'URL senza sottocartelle).
-2. Dalla cartella del progetto:
+The repository is already set up: `.github/workflows/deploy.yml` builds and publishes on every
+push to `main`, with **Settings → Pages → Source: GitHub Actions**. Publishing an article is
+therefore:
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Primo commit"
-   git branch -M main
-   git remote add origin https://github.com/giacomo49/giacomo49.github.io.git
-   git push -u origin main
-   ```
+```bash
+git add -A
+git commit -m "New article"
+git push
+```
 
-3. Su GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-4. Fatto. Il workflow in `.github/workflows/deploy.yml` builda e pubblica a ogni push su `main`:
-   da qui in poi il deploy è semplicemente `git push`.
+The site updates about a minute later.
 
-Se invece usi un repository con un altro nome (es. `blog`), il sito vive in una sottocartella
-e serve aggiungere in `astro.config.mjs`: `base: '/blog'`.
+Note: this only works without a `base` path because the repository is named
+`giacomo49.github.io`. In a repository with a different name the site lives in a subfolder and
+`astro.config.mjs` needs `base: '/repository-name'`.
 
-### Vercel (alternativa, deploy anche delle preview)
+### Vercel (alternative, with preview deployments)
 
-1. Vai su [vercel.com/new](https://vercel.com/new) e collega l'account GitHub.
-2. Importa il repository: Vercel riconosce Astro da solo (build `npm run build`, output `dist`).
-3. Ogni push su `main` va in produzione, ogni pull request ottiene un'anteprima con URL dedicato.
+1. Go to [vercel.com/new](https://vercel.com/new) and connect the GitHub account.
+2. Import the repository: Vercel detects Astro on its own (build `npm run build`, output `dist`).
+3. Every push to `main` goes to production, every pull request gets its own preview URL.
 
-### Dominio personalizzato
+### Custom domain
 
-Se in futuro compri un dominio, aggiornalo in `site` dentro `astro.config.mjs` (serve per
-canonical URL, sitemap e RSS) e poi configuralo nelle impostazioni di GitHub Pages o Vercel.
+If you buy a domain later, update `site` in `astro.config.mjs` (it drives canonical URLs,
+the sitemap and RSS), then configure it in the GitHub Pages or Vercel settings.

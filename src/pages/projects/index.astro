@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="Projects" description="Programming, computational physics and AI projects.">
+  <section class="stack" style="margin-bottom: 2.5rem;">
+    <h1>Projects</h1>
+    <p class="muted">Things I've built, usually to solve a problem of my own.</p>
+  </section>
+
+  {
+    projects.length > 0 ? (
+      <ul class="post-list">
+        {projects.map((project) => (
+          <li style="padding-block: 1.25rem;">
+            <h2 style="font-size: 1.0625rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline;">
+              {project.data.url ? (
+                <a class="link-underline" href={project.data.url} target="_blank" rel="noopener">
+                  {project.data.title}
+                </a>
+              ) : (
+                project.data.title
+              )}
+              <span class="small muted" style="font-variant-numeric: tabular-nums;">
+                {project.data.date.getFullYear()}
+              </span>
+            </h2>
+            <p class="muted small" style="margin-top: 0.35rem;">{project.data.description}</p>
+            {project.data.tags.length > 0 && (
+              <p style="margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                {project.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="muted">Something to show here soon.</p>
+    )
+  }
+</BaseLayout>

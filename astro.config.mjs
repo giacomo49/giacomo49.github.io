@@ -7,20 +7,20 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  // Cambia questo URL se usi un dominio custom (es. 'https://giacomomancuso.dev').
+  // Change this URL if you move to a custom domain (e.g. 'https://giacomomancuso.dev').
   site: 'https://giacomo49.github.io',
 
   integrations: [sitemap()],
 
   markdown: {
-    // Pipeline remark/rehype: serve per il LaTeX.
-    // $inline$ viene gestito da remark-math, la resa HTML da rehype-katex.
+    // remark/rehype pipeline: this is what makes LaTeX work.
+    // remark-math parses $inline$ and $$block$$, rehype-katex renders it to HTML.
     processor: unified({
       remarkPlugins: [remarkMath],
       rehypePlugins: [[rehypeKatex, { strict: false }]],
     }),
 
-    // Syntax highlighting con due temi (chiaro/scuro), gestiti via CSS in global.css
+    // Syntax highlighting with two themes (light/dark), switched via CSS in global.css
     shikiConfig: {
       themes: {
         light: 'github-light',

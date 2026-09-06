@@ -11,58 +11,58 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <BaseLayout>
   <section class="stack">
-    <h1>Ciao, sono Giacomo Mancuso.</h1>
+    <h1>Hi, I'm Giacomo Mancuso.</h1>
     <p class="muted">
-      Ho 21 anni, studio Fisica e corro. Nel mezzo scrivo codice, e qui tengo insieme
-      le tre cose: appunti di fisica, allenamenti e piccoli esperimenti con il computer.
+      I'm 21, I study Physics and I run. In between I write code, and this is where I keep
+      the three together: physics notes, training, and small experiments with a computer.
     </p>
   </section>
 
   <section class="stack" style="margin-top: 3.5rem;">
-    <h2>Fisica</h2>
+    <h2>Physics</h2>
     <p class="muted">
-      Sono al corso di laurea triennale in Fisica. Mi interessa soprattutto il punto in cui
-      la teoria diventa un conto che si può fare davvero: meccanica analitica, elettromagnetismo,
-      i primi passi nella quantistica. Scrivo articoli quando capisco qualcosa abbastanza bene
-      da poterlo spiegare — di solito è anche il momento in cui scopro che non l'avevo capito.
+      I'm an undergraduate physics student. What interests me most is the point where theory
+      turns into a calculation you can actually carry out: analytical mechanics, electromagnetism,
+      the first steps into quantum mechanics. I write articles when I understand something well
+      enough to explain it — which is usually also the moment I find out I hadn't understood it.
     </p>
   </section>
 
   <section class="stack" style="margin-top: 2.5rem;">
-    <h2>Atletica leggera</h2>
+    <h2>Track and field</h2>
     <p class="muted">
-      Pratico atletica leggera a livello agonistico. È la parte della mia giornata che non
-      si può ottimizzare a tavolino: bisogna presentarsi, ripetere, misurare, aspettare.
-      Mi ha insegnato più sulla costanza di qualsiasi manuale di produttività.
+      I compete in track and field. It's the part of my day that can't be optimised on paper:
+      you have to show up, repeat, measure, wait. It has taught me more about consistency
+      than any productivity book.
     </p>
   </section>
 
   <section class="stack" style="margin-top: 2.5rem;">
-    <h2>Informatica &amp; AI</h2>
+    <h2>Computing &amp; AI</h2>
     <p class="muted">
-      Programmo per curiosità: simulazioni numeriche, analisi dei dati degli allenamenti,
-      strumenti che mi semplificano lo studio. Seguo da vicino il machine learning e i modelli
-      linguistici, con l'idea che siano soprattutto un ottimo strumento per imparare più in fretta.
-      I progetti stanno in <a class="link-underline" href="/progetti">/progetti</a>.
+      I program out of curiosity: numerical simulations, analysis of my training data, tools
+      that make studying easier. I follow machine learning and language models closely, on the
+      assumption that they are, above all, an excellent way to learn faster. The projects live
+      in <a class="link-underline" href="/projects">/projects</a>.
     </p>
   </section>
 
   {
     posts.length > 0 && (
       <section style="margin-top: 3.5rem;">
-        <h2 class="section-title">Ultimi articoli</h2>
+        <h2 class="section-title">Latest writing</h2>
         <div style="margin-top: 0.75rem;">
           <PostList posts={posts} />
         </div>
         <p class="small" style="margin-top: 1.25rem;">
-          <a class="link-underline muted" href="/blog">Tutti gli articoli &rarr;</a>
+          <a class="link-underline muted" href="/blog">All articles &rarr;</a>
         </p>
       </section>
     )
   }
 
   <section style="margin-top: 3.5rem;">
-    <h2 class="section-title">Dove trovarmi</h2>
+    <h2 class="section-title">Elsewhere</h2>
     <p class="stack" style="margin-top: 0.75rem;">
       {
         SOCIALS.map((social) => (

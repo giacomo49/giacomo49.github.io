@@ -1,6 +1,6 @@
 /* ==========================================================================
    Design tokens
-   Tema chiaro di default; il tema scuro si attiva con la classe .dark su <html>
+   Light theme by default; the dark theme is enabled by the .dark class on <html>
    ========================================================================== */
 
 :root {
@@ -34,7 +34,7 @@ html.dark {
 }
 
 /* ==========================================================================
-   Reset essenziale
+   Minimal reset
    ========================================================================== */
 
 *,
@@ -80,7 +80,7 @@ video {
 }
 
 /* ==========================================================================
-   Tipografia
+   Typography
    ========================================================================== */
 
 h1,
@@ -259,7 +259,7 @@ html.dark .theme-toggle .icon-moon {
 }
 
 /* ==========================================================================
-   Liste (blog, progetti)
+   Lists (blog, projects)
    ========================================================================== */
 
 .post-list {
@@ -328,7 +328,7 @@ html.dark .theme-toggle .icon-moon {
 }
 
 /* ==========================================================================
-   Contenuto degli articoli
+   Article content
    ========================================================================== */
 
 .prose {
@@ -410,7 +410,7 @@ html.dark .theme-toggle .icon-moon {
   margin-block: 2.5em;
 }
 
-/* Shiki: due temi, switch via classe .dark */
+/* Shiki: two themes, switched by the .dark class */
 html.dark .astro-code,
 html.dark .astro-code span {
   color: var(--shiki-dark) !important;
@@ -420,7 +420,7 @@ html.dark .astro-code span {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* KaTeX: formule a blocco scrollabili su mobile */
+/* KaTeX: block formulas scroll horizontally on mobile */
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
@@ -432,7 +432,7 @@ html.dark .astro-code span {
 }
 
 /* ==========================================================================
-   Accessibilità
+   Accessibility
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -458,7 +458,7 @@ html.dark .astro-code span {
   border: 0;
 }
 
-/* Colori nativi di scrollbar, form e caret coerenti con il tema */
+/* Native scrollbar, form control and caret colors follow the theme */
 :root {
   color-scheme: light;
 }

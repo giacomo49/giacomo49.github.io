@@ -2,8 +2,8 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * Blog: ogni file .md in src/content/blog/ diventa automaticamente
- * una pagina /blog/<nome-file> e compare nella lista degli articoli.
+ * Blog: every .md file in src/content/blog/ automatically becomes
+ * a /blog/<filename> page and shows up in the article list.
  */
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -17,10 +17,10 @@ const blog = defineCollection({
 });
 
 /**
- * Progetti: stessa logica, per il portfolio.
+ * Projects: same idea, for the portfolio.
  */
-const progetti = defineCollection({
-  loader: glob({ base: './src/content/progetti', pattern: '**/*.{md,mdx}' }),
+const projects = defineCollection({
+  loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -31,4 +31,4 @@ const progetti = defineCollection({
   }),
 });
 
-export const collections = { blog, progetti };
+export const collections = { blog, projects };

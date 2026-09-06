@@ -1,4 +1,4 @@
-name: Deploy su GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   pages: write
   id-token: write
 
-# Un solo deploy alla volta; le run in coda vengono sostituite dall'ultima.
+# One deployment at a time; queued runs are superseded by the latest.
 concurrency:
   group: pages
   cancel-in-progress: false

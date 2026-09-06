@@ -1,15 +1,15 @@
 export const SITE = {
   title: 'Giacomo Mancuso',
   description:
-    'Fisica, atletica leggera e informatica. Appunti, articoli e progetti di Giacomo Mancuso.',
+    'Physics, track and field, and computing. Notes, articles and projects by Giacomo Mancuso.',
   author: 'Giacomo Mancuso',
-  lang: 'it',
+  lang: 'en',
 };
 
 export const NAV = [
   { href: '/', label: 'About' },
   { href: '/blog', label: 'Blog' },
-  { href: '/progetti', label: 'Progetti' },
+  { href: '/projects', label: 'Projects' },
 ];
 
 export const SOCIALS = [

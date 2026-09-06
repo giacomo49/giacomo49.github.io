@@ -42,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
       href={new URL('rss.xml', Astro.site ?? Astro.url)}
     />
 
-    <!-- Applica il tema salvato prima del primo paint, per evitare il flash. -->
+    <!-- Apply the stored theme before first paint, to avoid the flash. -->
     <script is:inline>
       (() => {
         try {

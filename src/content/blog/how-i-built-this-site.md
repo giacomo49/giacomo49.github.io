@@ -2,7 +2,7 @@
 title: "How I built this site"
 date: 2026-09-09
 tags: ["AI"]
-draft: true
+draft: false
 ---
 
 I wanted to create a personal site with a home page, a blog, and a space for any projects I might want to share. Instead of writing the code by hand, I tried a two-step approach: have Gemini write a document with the site's specifications, then hand it to Claude to implement it. Below is the conversation, exactly as it went.

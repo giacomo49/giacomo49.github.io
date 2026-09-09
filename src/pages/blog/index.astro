@@ -11,9 +11,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 <BaseLayout title="Blog" description="Articles on physics, programming and sport.">
   <section class="stack" style="margin-bottom: 2.5rem;">
     <h1>Blog</h1>
-    <p class="muted">
-      Notes and articles on physics, programming and training. Newest first.
-    </p>
   </section>
 
   {posts.length > 0 ? <PostList posts={posts} /> : <p class="muted">Nothing published yet.</p>}
